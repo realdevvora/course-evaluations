@@ -1,11 +1,23 @@
 import React from 'react'
 import './App.css'
+import Navbar from './components/Navbar'
 
 function App() {
 
   return (
     <div>
-      <p>Hi</p>
+      <Navbar />
+      <h3>dummy</h3>
+      <h3>dummy</h3>
+      <h3>dummy</h3>
+      <h3>dummy</h3>
+      <h3>dummy</h3>
+      <h3>dummy</h3>
+      <h3>dummy</h3>
+      <h3>dummy</h3>
+      <h3>dummy</h3>
+      <h3>dummy</h3>
+      
     </div>
   )
 }
