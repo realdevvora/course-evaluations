@@ -2,23 +2,24 @@ import React from 'react'
 import ig_logo from "../images/ig-logo.png"
 import twitter_logo from "../images/twitter-logo.png"
 import Searchbar from './Searchbar'
-import { BrowserRouter, Route, Link } from "react-router-dom";
 
 
 export default function Navbar() {
     return (
-        <nav>
-            <h1>CourseEvaluator</h1>
-            <Searchbar />
-            <div className="social-tags">
-                <Link to="/evaluation">Home</Link>
-                <a href="https://twitter.com/notdevvora">
-                    <img src={twitter_logo} alt="twitter" width="30"/>
-                </a>
-                <a href="https://www.instagram.com/isdevvora/">
-                    <img src={ig_logo} alt="" width="30"/>
-                </a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
+                <a class="navbar-brand" href="#">Course Evaluator</a>
+                <Searchbar />
+                <div className="social-tags">
+                    <a href="https://twitter.com/notdevvora">
+                        <img src={twitter_logo} alt="twitter" width="30"/>
+                    </a>
+                    <a href="https://www.instagram.com/isdevvora/">
+                        <img src={ig_logo} alt="" width="30"/>
+                    </a>
+                </div>
             </div>
+                
         </nav>
     )
 }
