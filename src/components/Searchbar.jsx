@@ -1,4 +1,5 @@
 import React from 'react'
+import searchImg from "../images/search.png"
 import {useNavigate} from "react-router-dom"
 
 export default function Searchbar() {
@@ -20,8 +21,8 @@ export default function Searchbar() {
             <div id="navbar-search-autocomplete" className="form-outline">
                 <input type="search" id="form1" className="form-control" placeholder="Search" onKeyDown={keyDown}/>
             </div>
-            <button type="button" className="btn btn-primary" onClick={search}>
-                <i className="fas fa-search"></i>
+            <button type="button" className="btn btn-dark" onClick={search}>
+                <img src={searchImg} alt="Search" width="20"/>
             </button>
         </div>
         
