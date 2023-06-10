@@ -1,30 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import searchImg from "../images/search.png"
 import {useNavigate} from "react-router-dom"
+import courses from "../data/courses"
 
 export default function Searchbar() {
-    const navigate = useNavigate()
 
-    const keyDown = (e) => {
-        if(e.keyCode === 13){
-            search()
-        }
+    const [items, setItems] = useState(courses)
+    const [searchInput, setSearchInput] = useState("")
+
+    function handleChange(e) {
+        e.preventDefault();
+        setSearchInput(e.target.value)
     }
-    const search = () => {
-    
-        navigate("/evaluation")
+    let filteredItems = []
+    if (items.length > 0) {
+        filteredItems = items.filter(item => {
+            return item.name.toLowerCase().includes(searchInput.toLowerCase())
+        })
     }
 
     return (
-        
-        <div className="input-group ps-5">
-            <div id="navbar-search-autocomplete" className="form-outline">
-                <input type="search" id="form1" className="form-control" placeholder="Search" onKeyDown={keyDown}/>
+        <div>
+            <form action="/" method="get">
+                <input
+                    type="text"
+                    id="header-search"
+                    placeholder="Search Course"
+                    name="course"
+                    onChange={handleChange}
+                    value={searchInput}
+                />
+
+                <button type="submit">Search</button>
+            </form>
+            <div className="dropdown">
+                {filteredItems.map((course, key) => {
+                    return (
+                        <div key={key}>
+                            <p>{course.name}</p>
+                        </div>
+                    )
+                })}
             </div>
-            <button type="button" className="btn btn-dark" onClick={search}>
-                <img src={searchImg} alt="Search" width="20"/>
-            </button>
         </div>
+        
         
     )
 }

@@ -9,9 +9,11 @@
     align-items: center;
 }
 
+.dropdown {
+    position: absolute;
+}
 
-
-.input-group {
+.container-fluid form {
     margin: 0px;
     display: flex;
     align-self: center;

@@ -6,9 +6,9 @@ import Searchbar from './Searchbar'
 
 export default function Navbar() {
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <a class="navbar-brand" href="#">Course Evaluator</a>
+                <a className="navbar-brand" href="/">Course Evaluator</a>
                 <Searchbar />
                 <div className="social-tags">
                     <a href="https://twitter.com/notdevvora">
