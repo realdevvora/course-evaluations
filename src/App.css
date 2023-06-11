@@ -9,8 +9,32 @@
     align-items: center;
 }
 
+.search--bar input {
+    width: 50em;
+    border-width: 5px;
+    border-radius: 5px;
+    border-color: rgb(211, 164, 255);
+}
+
+.search--bar input:focus {
+    background-color: rgb(234, 234, 234);
+    outline: none;
+}
+
 .dropdown {
+    justify-content: center;
+    width: 50em;
     position: absolute;
+    border-radius: 10px;
+}
+
+.search--box--course {
+    width: 100%;
+    background-color: white;
+    border: 2px solid #e2e2e2;
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .container-fluid form {

@@ -1,48 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import searchImg from "../images/search.png"
-import {useNavigate} from "react-router-dom"
+import {BrowserRouter as Router, Route, redirect, useNavigate} from "react-router-dom"
 import courses from "../data/courses"
 
 export default function Searchbar() {
-
+    const navigate = useNavigate()
     const [items, setItems] = useState(courses)
+    const [filteredItems, setFilteredItems] = useState(items)
+    const [showDropdown, setShowDropdown] = useState(false)
     const [searchInput, setSearchInput] = useState("")
 
     function handleChange(e) {
-        e.preventDefault();
+        e.preventDefault()
+        setShowDropdown(true)
         setSearchInput(e.target.value)
     }
-    let filteredItems = []
-    if (items.length > 0) {
-        filteredItems = items.filter(item => {
-            return item.name.toLowerCase().includes(searchInput.toLowerCase())
-        })
-    }
+
+    useEffect(() => {
+        if (searchInput.length > 0) {
+            setFilteredItems(items.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase())))
+        }
+        else {
+            setShowDropdown(false)
+        }
+    }, [searchInput])
+    
 
     return (
-        <div>
-            <form action="/" method="get">
+            <div className="search--bar">
+
                 <input
                     type="text"
-                    id="header-search"
                     placeholder="Search Course"
-                    name="course"
                     onChange={handleChange}
                     value={searchInput}
+                    className="search--box"
                 />
 
-                <button type="submit">Search</button>
-            </form>
-            <div className="dropdown">
-                {filteredItems.map((course, key) => {
-                    return (
-                        <div key={key}>
-                            <p>{course.name}</p>
-                        </div>
-                    )
-                })}
+                {showDropdown && <div className="dropdown">
+                    {filteredItems.map((course, key) => {
+                        return (
+                            <div className="search--box--course" key={key} onClick={() => navigate(`/${course.name}`)}>
+                                <p>{course.name}</p>
+                            </div>
+                        )
+                    })}
+                </div>}
             </div>
-        </div>
         
         
     )
