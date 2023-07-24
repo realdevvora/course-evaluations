@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react'
-import searchImg from "../images/search.png"
 import {BrowserRouter as Router, Route, redirect, useNavigate} from "react-router-dom"
 import courses from "../data/courses"
 
