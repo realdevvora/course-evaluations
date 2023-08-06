@@ -1,21 +1,15 @@
 const express = require('express')
-const {createReview, getReviews, getReview, deleteReview, updateReview } = require('../controllers/courseController')
+const {getCourses, getCourse, createCourse } = require('../controllers/courseController')
 const router = express.Router()
 
-// get all course reviews
-router.get('/', getReviews)
+// get all courses
+router.get('/', getCourses)
 
-// get a single course review
-router.get('/:id', getReview)
+// get a single course
+router.get('/:id', getCourse)
 
-// post new course review
-router.post('/', createReview)
-
-// delete course review
-router.delete('/:id', deleteReview)
-
-// update course review
-router.patch('/:id', updateReview)
+// post new course
+router.post('/', createCourse)
 
 
 module.exports = router

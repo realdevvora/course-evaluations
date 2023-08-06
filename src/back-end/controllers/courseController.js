@@ -1,34 +1,34 @@
 const CourseModel = require('../models/CourseModel')
 const mongoose = require('mongoose')
 
-// get all reviews
-const getReviews = async (req, res) => {
+// get all courses
+const getCourses = async (req, res) => {
 
-    const reviews = await CourseModel.find({})
+    const courses = await CourseModel.find({})
 
-    res.status(200).json(reviews)
+    res.status(200).json(courses)
 }
 
-// get single review
-const getReview = async (req, res) => {
+// get single course
+const getCourse = async (req, res) => {
     
     const {id} = req.params
 
     // checks if the ID sent is a valid mongoose id
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: "No such review"})
+        return res.status(404).json({error: "No such course"})
     }
 
-    const review = await CourseModel.findById(id)
-    if (!review) {
-        return res.status(400).json({error: "NO review found"})
+    const course = await CourseModel.findById(id)
+    if (!course) {
+        return res.status(400).json({error: "NO course found"})
     }
 
-    res.status(200).json(review)
+    res.status(200).json(course)
 }
 
-// post new review
-const createReview = async (req, res) => {
+// post course
+const createCourse = async (req, res) => {
 
     const {title, distribution, difficulty} = req.body
 
@@ -42,45 +42,7 @@ const createReview = async (req, res) => {
     }
 }
 
-// delete review
-const deleteReview = async (req, res) => {
-    const {id} = req.params
-
-    // checks if the ID sent is a valid mongoose id
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: "No such review"})
-    }
-
-    const deleted = await CourseModel.findOneAndDelete({_id: id})
-
-    if (!deleted) {
-        return res.status(400).json({error: "No such review"})
-    }
-
-    res.status(200).json(deleted)
-
-}
-
-// update review
-const updateReview = async (req, res) => {
-    const {id} = req.params
-
-    // checks if the ID sent is a valid mongoose id
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: "No such review"})
-    }
-
-    // update review by using the request properties
-    const review = await CourseModel.findOneAndUpdate({_id: id}, {
-        ...req.body
-    })
-    
-    if (!review) {
-        return res.status(400).json({error: "No such review"})
-    }
-    
-    res.status(200).json(review)
-}
 
 
-module.exports = {createReview, getReviews, getReview, deleteReview, updateReview}
+
+module.exports = {getCourses, getCourse, createCourse}

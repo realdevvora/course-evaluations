@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const courseRouter = require('./routes/courses')
+const reviewRouter = require('./routes/reviews')
 
 
 // express app
@@ -18,11 +19,13 @@ app.use((req, res, next) => {
 // routes
 app.use("/api/courses", courseRouter)
 
+app.use("/api/reviews", reviewRouter)
+
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     // listen for requests
     app.listen(process.env.PORT, () => {
-        console.log("listening on port 4000")
+        console.log("listening on port ", process.env.PORT)
     })
 })
 .catch((error) => {
