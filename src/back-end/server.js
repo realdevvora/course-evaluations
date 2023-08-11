@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const courseRouter = require('./routes/courses')
 const reviewRouter = require('./routes/reviews')
+const userRouter = require("./routes/user")
 
 
 // express app
@@ -20,6 +21,10 @@ app.use((req, res, next) => {
 app.use("/api/courses", courseRouter)
 
 app.use("/api/reviews", reviewRouter)
+
+app.use("/api/user", userRouter)
+
+
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
