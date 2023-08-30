@@ -79,12 +79,7 @@ export default function CoursePage(props) {
         })
 
         const json = await response.json()
-        console.log(json)
-
-        json.forEach(review => {
-          // if the review title matches
-          
-        })     
+        console.log(json)  
 
         for (let i = 0; i < json.length; i++) {
           if (json[i].courseTitle === course.title) {
@@ -92,7 +87,6 @@ export default function CoursePage(props) {
             
             for (let j = 0; j < newDifficulties.length; j ++) {
               if (newDifficulties[j].label == json[i].difficulty) {
-                console.log("INCREMENTED", json[i].title)
                 newDifficulties[j].value += 1
               }
             }
@@ -102,7 +96,6 @@ export default function CoursePage(props) {
             const newRatings = [...ratings]
             for (let j = 0; j < newRatings.length; j ++) {
               if (newRatings[j].label == json[i].rating) {
-                console.log("INCREMENTED", json[i].title)
                 newRatings[j].value += 1
               }
             } 
