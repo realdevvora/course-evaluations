@@ -1,9 +1,7 @@
 const express = require('express')
 const {getCourses, getCourse, createCourse } = require('../controllers/courseController')
 const router = express.Router()
-const {retrieveCourseInfo} = require('../api/courseApi')
 
-retrieveCourseInfo()
 
 // get all courses
 router.get('/', getCourses)
