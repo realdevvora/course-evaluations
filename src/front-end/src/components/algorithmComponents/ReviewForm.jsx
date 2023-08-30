@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { useReviewContext } from "../../hooks/useReviewContext"
+import { useAuthContext } from "../../hooks/useAuthContext"
 
 const ReviewForm = (props) => {
     const { dispatch } = useReviewContext()
+    const {user} = useAuthContext()
 
     const {course} = props
     const [title, setTitle] = useState("")
@@ -13,26 +15,30 @@ const ReviewForm = (props) => {
     const [difficulty, setDifficulty] = useState(0)
     const [courseTitle, setCourseTitle] = useState(course.title)
     const [error, setError] = useState(null)
+    
 
-    // useEffect(() => {
-    //     const fetchInfo = async () => {
-    //     }
-    //     fetchInfo()
-        
-    // }, [])
+    
 
     const handleSubmit = async (e) => {
         console.log(title)
         e.preventDefault()
-        
 
-        const review = {title, author, message, program, rating, difficulty, courseTitle}
+        if (!user) {
+            setError("You must be logged in")
+            return 
+        }
+        console.log(user)
+        setAuthor(user.username)
+        setProgram(user.program)
+        
+        const review = {title, author: user.username, message, program: user.program, rating, difficulty, courseTitle}
 
         const response = await fetch('/api/reviews', {
             method: "POST",
             body: JSON.stringify(review),
             headers: {
-                'Content-Type': "application/json"
+                'Content-Type': "application/json",
+                "Authorization": `Bearer ${user.token}`
             }
         })
 
@@ -56,7 +62,7 @@ const ReviewForm = (props) => {
 
     return (
         <div className="review--form">
-            <form className="create" onSubmit={handleSubmit}>
+                <form className="create" onSubmit={handleSubmit}>
                 <h3>Add a new review for {course.title}</h3>
 
                 <label>Title: </label>

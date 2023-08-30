@@ -9,14 +9,6 @@ function Home() {
     <div>
       <h3>dummy</h3>
       <h3>dummy</h3>
-      <h3>dummy</h3>
-      <h3>dummy</h3>
-      <h3>dummy</h3>
-      <h3>dummy</h3>
-      <h3>dummy</h3>
-      <h3>dummy</h3>
-      <h3>dummy</h3>
-      <h3>dummy</h3>
       <img src={ig_logo} alt="" />
       <Footer />
     </div>

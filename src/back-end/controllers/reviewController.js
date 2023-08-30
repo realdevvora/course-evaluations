@@ -33,8 +33,9 @@ const createReview = async (req, res) => {
     const {title, author, message, program, rating, difficulty, courseTitle} = req.body
 
     try {
+        const user_id = req.user_id
         // create table in db with following columns
-        const review = await ReviewModel.create({title, author, message, program, rating, difficulty, courseTitle})
+        const review = await ReviewModel.create({title, author, message, program, rating, difficulty, courseTitle, user_id})
         // send success message with data sent
         res.status(200).json(review)
     } catch (err) {

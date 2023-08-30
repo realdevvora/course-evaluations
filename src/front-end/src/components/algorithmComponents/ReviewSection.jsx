@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react"
 import { useReviewContext } from "../../hooks/useReviewContext"
+import { useAuthContext } from "../../hooks/useAuthContext"
 
 const ReviewSection = (props) => {
     const {course} = props
     const {reviews, dispatch} = useReviewContext()
+    const {user} = useAuthContext()
 
     useEffect(() => {
+        // sending
         const fetchReviews = async () => {
-            const response = await fetch("/api/reviews")
+            const response = await fetch("/api/reviews", {
+                headers: {
+                    "Authorization": `Bearer ${user.token}`
+                }
+            })
             const json = await response.json()
             
             const listReviews = []
@@ -22,8 +29,10 @@ const ReviewSection = (props) => {
             }
         }
 
-        fetchReviews()
-    }, [course])
+        if (user) {
+            fetchReviews()
+        }
+    }, [course, user])
 
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import NoPage from './components/NoPage';
@@ -7,9 +7,11 @@ import CoursePage from './components/CoursePage';
 import Login from './components/navbarComponents/Login';
 import Register from './components/navbarComponents/Register';
 import Navbar from './components/Navbar';
+import { useAuthContext } from './hooks/useAuthContext';
 
 const App = () => {
   const [courses, setCourses] = useState(null);
+  const {user} = useAuthContext()
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -48,8 +50,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} errorElement={<NoPage />} />
           <Route path="/evaluation" element={<Home />} errorElement={<NoPage />} />
-          <Route path="/login" element={<Login />} errorElement={<NoPage />} />
-          <Route path="/register" element={<Register />} errorElement={<NoPage />} />
+          <Route path="/login" element={!user ? <Login /> : <Navigate to="/"/>} errorElement={<NoPage />} />
+          <Route path="/register" element={!user ? <Register /> : <Navigate to="/"/>} errorElement={<NoPage />} />
           {courses ? generateCourseRoutes() : null}
         </Routes>
       </BrowserRouter>
