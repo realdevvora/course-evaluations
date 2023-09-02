@@ -15,7 +15,7 @@ const Login = () => {
   }
 
   return (
-    <form className="register" onSubmit={handleSubmit}>
+    <form className="login" onSubmit={handleSubmit}>
       <h3>Login</h3>
       
       <label>Username:</label>

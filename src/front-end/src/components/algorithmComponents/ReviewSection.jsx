@@ -10,12 +10,9 @@ const ReviewSection = (props) => {
     useEffect(() => {
         // sending
         const fetchReviews = async () => {
-            const response = await fetch("/api/reviews", {
-                headers: {
-                    "Authorization": `Bearer ${user.token}`
-                }
-            })
+            const response = await fetch("/api/reviews")
             const json = await response.json()
+
             
             const listReviews = []
             if (response.ok) {
@@ -25,13 +22,13 @@ const ReviewSection = (props) => {
                     }
                     
                 }
+
                 dispatch({type: "SET_REVIEWS", payload: listReviews})
             }
         }
 
-        if (user) {
-            fetchReviews()
-        }
+        
+        fetchReviews()
     }, [course, user])
 
 
@@ -43,7 +40,7 @@ const ReviewSection = (props) => {
                 <div className="search--box--review" key={review._id} onClick={() => {}}>
                     <div className="review--block--header">
                         <h3>{review.title}</h3>
-                        <p>by: <strong>{review.author}</strong> in {review.program}</p>
+                        <p>by: {review.author} in {review.program}</p>
                     </div>
                     <p>{review.message}</p>
                     <div className="review--block--ratings">
@@ -51,13 +48,14 @@ const ReviewSection = (props) => {
                         <h4>Difficulty: {review.difficulty}/10</h4>
                     </div>
                     <span onClick={async () => {
+
                         const response = await fetch("/api/reviews/" + review._id, {
                             method: "DELETE"
                         })
                         const json = await response.json()
 
                         if (response.ok) {
-                            console.log("review deleted")
+                            console.log(json)
                         }
                     }}><strong>Delete</strong></span>
                 </div>

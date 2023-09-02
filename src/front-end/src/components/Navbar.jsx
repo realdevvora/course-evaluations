@@ -21,7 +21,7 @@ export default function Navbar() {
                 <a className="navbar-brand" href="/">Course Evaluator</a>
                 <Searchbar />
                 {user && (
-                    <div>
+                    <div className="loggedin--buttons">
                         <span>{user.username}</span>
                         <button onClick={handleClick}>Logout</button>
                     </div>

@@ -52,29 +52,28 @@ export default function Searchbar() {
     
 
     return (
-            <div className="search--bar">
+        <div className="search--bar">
+            <input
+                type="text"
+                placeholder="Search Course"
+                onChange={handleChange}
+                value={searchInput}
+                className="search--box"
+            />
 
-                <input
-                    type="text"
-                    placeholder="Search Course"
-                    onChange={handleChange}
-                    value={searchInput}
-                    className="search--box"
-                />
-
-                {showDropdown && <div className="dropdown">
-                    {filteredCourses.map(course => {
-                        return (
-                            <div className="search--box--course" key={course._id} onClick={() => {
-                                setSearchInput("")
-                                navigate(`/${course.title}`)
-                            }}>
-                                <p>{course.title}</p>
-                            </div>
-                        )
-                    })}
-                </div>}
-            </div>
+            {showDropdown && <div className="dropdown">
+                {filteredCourses.map(course => {
+                    return (
+                        <div className="search--box--course" key={course._id} onClick={() => {
+                            setSearchInput("")
+                            navigate(`/${course.title}`)
+                        }}>
+                            <p>{course.title}</p>
+                        </div>
+                    )
+                })}
+            </div>}
+        </div>
         
         
     )

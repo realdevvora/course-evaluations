@@ -110,25 +110,25 @@ export default function CoursePage(props) {
     }, [course.title])
 
     return (
-      <>
         <div className="course-details">
           <div className="details">
             <h1>{course.title}</h1>
-            <p>Distribution: {course.distribution}</p>
+            <p>{course.distribution}</p>
           </div>
-          <div className="difficulty--graph">
-            <h4>Difficulty</h4>
-            <DifficultyBarChart data={difficulties} width={400} height={300} />
-          </div>
-          <div className="rating--graph">
-            <h4>Ratings</h4>
-            <RatingBarChart data={ratings} width={400} height={300} />
+          <div className="review--graphs">
+            <div className="difficulty--graph">
+              <h4>Difficulty</h4>
+              <DifficultyBarChart data={difficulties} width={400} height={300} />
+            </div>
+            <div className="rating--graph">
+              <h4>Ratings</h4>
+              <RatingBarChart data={ratings} width={400} height={300} />
+            </div>
           </div>
           <ReviewForm course={course}/>
           <br />
           <ReviewSection course={course}/>
         </div>
-      </>
         
       )
 }
