@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const courseRouter = require('./routes/courses')
 const reviewRouter = require('./routes/reviews')
 const userRouter = require("./routes/user")
+const cors = require("cors")
 
 
 // express app

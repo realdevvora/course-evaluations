@@ -9,7 +9,7 @@ function Home() {
 
   return (
     <div className="home--page">
-      <div class="home--hero">
+      <div className="home--hero">
         <h3>honest opinions of your fellow peers.</h3>
       </div>
         <div className="home--review--example">
