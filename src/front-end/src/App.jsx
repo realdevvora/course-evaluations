@@ -49,7 +49,6 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} errorElement={<NoPage />} />
-          <Route path="/evaluation" element={<Home />} errorElement={<NoPage />} />
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/"/>} errorElement={<NoPage />} />
           <Route path="/register" element={!user ? <Register /> : <Navigate to="/"/>} errorElement={<NoPage />} />
           {courses ? generateCourseRoutes() : null}
